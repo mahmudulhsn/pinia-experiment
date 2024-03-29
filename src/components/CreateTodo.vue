@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <form class="flex gap-2 justify-between items-center">
     <input type="text" class="w-[80%] px-2 py-1 rounded" />
