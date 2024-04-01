@@ -39,5 +39,9 @@ export const useTasks = defineStore('tasks', {
 
   getters: {},
 
-  actions: {}
+  actions: {
+    addTask(task: Task): void {
+      this.tasks.push(task)
+    }
+  }
 })
