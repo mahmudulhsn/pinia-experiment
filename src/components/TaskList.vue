@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SingleTodo from '@/components/SingleTodo.vue'
+import SingleTask from '@/components/SingleTask.vue'
 import { useTasks } from '@/stores/Task'
 
 const taskStore = useTasks()
@@ -8,7 +8,7 @@ const taskStore = useTasks()
 <template>
   <div class="flex flex-col gap-2 bg-teal-300">
     <div v-for="task in taskStore.tasks" :key="task.id">
-      <SingleTodo :task="task" />
+      <SingleTask :task="task" />
     </div>
   </div>
 </template>

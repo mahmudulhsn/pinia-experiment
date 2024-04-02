@@ -12,8 +12,8 @@ const deleteTodo = (id: number) => {
 <template>
   <div class="bg-teal-200 flex justify-between items-center py-4 px-4">
     <div class="flex gap-3">
-      <input type="checkbox" :checked="props.task.status == 'Completed'" />
-      <h3 :class="props.task.status == 'Completed' ? 'line-through' : ''">
+      <input type="checkbox" :checked="props.task.isCompleted" />
+      <h3 :class="props.task.isCompleted ? 'line-through' : ''">
         {{ props.task.title }}
       </h3>
     </div>

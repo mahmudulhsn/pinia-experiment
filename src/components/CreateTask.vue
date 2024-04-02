@@ -8,7 +8,7 @@ const createTask = () => {
     let newTask = {
       id: Date.now(),
       title: task.value,
-      status: 'created'
+      isCompleted: false
     }
     const taskStore = useTasks()
     taskStore.addTask(newTask)

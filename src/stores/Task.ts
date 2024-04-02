@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export type Task = {
   id: number
   title: string
-  status: string
+  isCompleted: boolean
 }
 
 export const useTasks = defineStore('tasks', {
@@ -12,27 +12,27 @@ export const useTasks = defineStore('tasks', {
       {
         id: 1,
         title: 'Task 1',
-        status: 'ON Going'
+        isCompleted: true
       },
       {
         id: 2,
         title: 'Task 2',
-        status: 'Completed'
+        isCompleted: false
       },
       {
         id: 3,
         title: 'Task 3',
-        status: 'Created'
+        isCompleted: false
       },
       {
         id: 4,
         title: 'Task 4',
-        status: 'ON Going'
+        isCompleted: true
       },
       {
         id: 5,
         title: 'Task 5',
-        status: 'Completed'
+        isCompleted: false
       }
     ] as Task[]
   }),
