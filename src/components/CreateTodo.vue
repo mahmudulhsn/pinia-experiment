@@ -4,14 +4,16 @@ import { ref } from 'vue'
 
 const task = ref('')
 const createTask = () => {
-  let newTask = {
-    id: Date.now(),
-    title: task.value,
-    status: 'created'
+  if (task.value.length > 0) {
+    let newTask = {
+      id: Date.now(),
+      title: task.value,
+      status: 'created'
+    }
+    const taskStore = useTasks()
+    taskStore.addTask(newTask)
+    task.value = ''
   }
-
-  const taskStore = useTasks()
-  taskStore.addTask(newTask)
 }
 </script>
 
