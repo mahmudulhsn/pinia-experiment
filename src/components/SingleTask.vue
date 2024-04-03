@@ -2,17 +2,24 @@
 import { useTasks } from '@/stores/Task'
 
 const props = defineProps(['task'])
-const { deleteTask } = useTasks()
+const { deleteTask, handleTaskToggle } = useTasks()
 
 const deleteTodo = (id: number) => {
   deleteTask(id)
+}
+const handleToggle = (id: number) => {
+  handleTaskToggle(id)
 }
 </script>
 
 <template>
   <div class="bg-teal-200 flex justify-between items-center py-4 px-4">
     <div class="flex gap-3">
-      <input type="checkbox" :checked="props.task.isCompleted" />
+      <input
+        @change="handleToggle(props.task.id)"
+        type="checkbox"
+        :checked="props.task.isCompleted"
+      />
       <h3 :class="props.task.isCompleted ? 'line-through' : ''">
         {{ props.task.title }}
       </h3>

@@ -48,6 +48,13 @@ export const useTasks = defineStore('tasks', {
       this.tasks = this.tasks.filter((task) => {
         return task.id !== id
       })
+    },
+
+    handleTaskToggle(id: number): void {
+      const task = this.tasks.find((task) => id === task.id)
+      if (task) {
+        task.isCompleted = !task.isCompleted
+      }
     }
   }
 })
