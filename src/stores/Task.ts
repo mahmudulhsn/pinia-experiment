@@ -37,7 +37,19 @@ export const useTasks = defineStore('tasks', {
     ] as Task[]
   }),
 
-  getters: {},
+  getters: {
+    countTotalTasks(): number {
+      return this.tasks.length
+    },
+
+    countCompletedTasks(): number {
+      return this.tasks.filter((task) => task.isCompleted == true).length
+    },
+
+    countPendingTasks(): number {
+      return this.tasks.filter((task) => task.isCompleted !== true).length
+    }
+  },
 
   actions: {
     addTask(task: Task): void {
