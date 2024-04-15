@@ -34,10 +34,29 @@ export const useTasks = defineStore('tasks', {
         title: 'Task 5',
         isCompleted: false
       }
-    ] as Task[]
+    ] as Task[],
+    sortable: 'all'
   }),
 
   getters: {
+    filteredTasks(): Task[] {
+      if (this.sortable == 'completed') {
+        return this.completedTasks
+      } else if (this.sortable == 'pending') {
+        return this.pendingTasks
+      } else {
+        return this.allTasks
+      }
+    },
+    allTasks(): Task[] {
+      return this.tasks
+    },
+    completedTasks(): Task[] {
+      return this.tasks.filter((task) => task.isCompleted == true)
+    },
+    pendingTasks(): Task[] {
+      return this.tasks.filter((task) => task.isCompleted !== true)
+    },
     countTotalTasks(): number {
       return this.tasks.length
     },
