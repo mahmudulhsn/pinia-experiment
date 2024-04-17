@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import SingleTask from '@/components/SingleTask.vue'
 import { useTasks } from '@/stores/Task'
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
 
 const taskStore = useTasks()
-const {filteredTasks} = storeToRefs(taskStore)
+const { filteredTasks } = storeToRefs(taskStore)
 </script>
 
 <template>

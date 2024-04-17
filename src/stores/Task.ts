@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { defineStore } from 'pinia'
 
 export type Task = {
@@ -6,36 +7,16 @@ export type Task = {
   isCompleted: boolean
 }
 
+export type CreateTask = {
+  title: string
+  is_completed: boolean
+}
+
 export const useTasks = defineStore('tasks', {
   state: () => ({
-    tasks: [
-      {
-        id: 1,
-        title: 'Task 1',
-        isCompleted: true
-      },
-      {
-        id: 2,
-        title: 'Task 2',
-        isCompleted: false
-      },
-      {
-        id: 3,
-        title: 'Task 3',
-        isCompleted: false
-      },
-      {
-        id: 4,
-        title: 'Task 4',
-        isCompleted: true
-      },
-      {
-        id: 5,
-        title: 'Task 5',
-        isCompleted: false
-      }
-    ] as Task[],
-    sortable: 'all'
+    tasks: [] as Task[],
+    sortable: 'all',
+    isLoading: false
   }),
 
   getters: {
@@ -71,8 +52,20 @@ export const useTasks = defineStore('tasks', {
   },
 
   actions: {
-    addTask(task: Task): void {
-      this.tasks.push(task)
+    async getTasks() {
+      try {
+        this.isLoading = true
+        const tasks = await axios.get('/api/tasks')
+        this.tasks = tasks.data.data
+        this.isLoading = false
+      } catch (error) {
+        //
+      }
+    },
+    async addTask(task: CreateTask): Promise<void> {
+      const response = await axios.post('/api/tasks', task)
+      console.log(response.data.data)
+      this.tasks.push(response.data.data)
     },
 
     deleteTask(id: number): void {

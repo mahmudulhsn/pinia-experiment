@@ -6,9 +6,8 @@ const task = ref('')
 const createTask = () => {
   if (task.value.length > 0) {
     let newTask = {
-      id: Date.now(),
       title: task.value,
-      isCompleted: false
+      is_completed: false
     }
     const taskStore = useTasks()
     taskStore.addTask(newTask)
