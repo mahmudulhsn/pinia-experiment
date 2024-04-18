@@ -68,10 +68,9 @@ export const useTasks = defineStore('tasks', {
       this.tasks.push(response.data.data)
     },
 
-    deleteTask(id: number): void {
-      this.tasks = this.tasks.filter((task) => {
-        return task.id !== id
-      })
+    async deleteTask(id: number): Promise<void> {
+      await axios.delete(`/api/tasks/${id}`)
+      this.tasks = this.tasks.filter((task) => task.id !== id)
     },
 
     handleTaskToggle(id: number): void {
