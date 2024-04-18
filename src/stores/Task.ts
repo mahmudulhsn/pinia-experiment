@@ -73,10 +73,15 @@ export const useTasks = defineStore('tasks', {
       this.tasks = this.tasks.filter((task) => task.id !== id)
     },
 
-    handleTaskToggle(id: number): void {
-      const task = this.tasks.find((task) => id === task.id)
-      if (task) {
-        task.isCompleted = !task.isCompleted
+    async handleTaskToggle(id: number): Promise<void> {
+      try {
+        await axios.put(`/api/tasks/${id}`)
+        const task = this.tasks.find((task) => id === task.id)
+        if (task) {
+          task.isCompleted = !task.isCompleted
+        }
+      } catch (error) {
+        //
       }
     }
   }
